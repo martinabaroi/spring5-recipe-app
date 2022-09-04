@@ -21,10 +21,10 @@ public class Ingredient {
     
     @ManyToOne			//many ingredients can have in one recipe
     private Recipe recipe; //this name "recipe" have to write in Recipe entity mappedBy = " "
+
     
     @OneToOne(fetch = FetchType.EAGER)   //unidirectional relationship from ingredient to Unit of messure. //so no need of ingredienr properties in unit of messure enity
     private UnitofMessure unitOfMessure;
-
 
 	public Long getId() {
 		return id;
@@ -65,7 +65,6 @@ public class Ingredient {
 		this.recipe = recipe;
 	}
 
-
 	public UnitofMessure getUnitOfMessure() {
 		return unitOfMessure;
 	}
@@ -74,6 +73,7 @@ public class Ingredient {
 	public void setUnitOfMessure(UnitofMessure unitOfMessure) {
 		this.unitOfMessure = unitOfMessure;
 	}
+
     
     
     
