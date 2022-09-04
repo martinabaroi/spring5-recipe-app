@@ -14,7 +14,7 @@ public class Notes {
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	 private Long id;
 	 
-	 @Lob
+	 @Lob		//The @Lob annotation specifies that the database should store this property as Large Object. 
 	 private String recipeNotes;
 	 
 	 @OneToOne
