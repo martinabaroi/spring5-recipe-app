@@ -3,10 +3,12 @@ package guru.springframework.domain;
 import java.math.BigDecimal;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Ingredient {
@@ -20,6 +22,9 @@ public class Ingredient {
     @ManyToOne			//many ingredients can have in one recipe
     private Recipe recipe; //this name "recipe" have to write in Recipe entity mappedBy = " "
 
+    
+    @OneToOne(fetch = FetchType.EAGER)   //unidirectional relationship from ingredient to Unit of messure. //so no need of ingredienr properties in unit of messure enity
+    private UnitofMessure unitOfMessure;
 
 	public Long getId() {
 		return id;
@@ -59,6 +64,16 @@ public class Ingredient {
 	public void setRecipe(Recipe recipe) {
 		this.recipe = recipe;
 	}
+
+	public UnitofMessure getUnitOfMessure() {
+		return unitOfMessure;
+	}
+
+
+	public void setUnitOfMessure(UnitofMessure unitOfMessure) {
+		this.unitOfMessure = unitOfMessure;
+	}
+
     
     
     
