@@ -4,6 +4,8 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,8 +31,11 @@ public class Recipe {
 	 @Lob
 	 private Byte[] image;
 	 
+	 @Enumerated(value = EnumType.STRING)
+	 private Difficulty difficulty;
+	 
 	 @OneToOne(cascade = CascadeType.ALL)   //here recipe is parent entity and notes is dependable on recipe. so whatever change is done in parent , that change also done in child entity
-	 private Notes notes;
+	 private Notes notes;		//recipe and notes bidirectonal relation
 	 
 	 @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")	//One can have Many ingredients. //mappedBy name come from ingredient entity Recipe propertity name;				
 	 private Set<Ingredient> ingredients; 
@@ -121,6 +126,14 @@ public class Recipe {
 
 	public void setIngredients(Set<Ingredient> ingredients) {
 		this.ingredients = ingredients;
+	}
+
+	public Difficulty getDifficulty() {
+		return difficulty;
+	}
+
+	public void setDifficulty(Difficulty difficulty) {
+		this.difficulty = difficulty;
 	}
 	 
 	

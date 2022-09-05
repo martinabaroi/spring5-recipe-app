@@ -18,7 +18,7 @@ public class Notes {
 	 private String recipeNotes;
 	 
 	 @OneToOne
-	 private Recipe recipe;
+	 private Recipe recipe;  //bidirectional
 
 	public Long getId() {
 		return id;
