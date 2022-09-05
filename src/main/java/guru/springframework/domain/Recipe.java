@@ -9,7 +9,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -17,28 +21,36 @@ import javax.persistence.OneToOne;
 public class Recipe {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	 private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-	 private String description;
-	 private Integer prepTime;
-	 private Integer cookTime;
-	 private Integer servings;
-	 private String source;
-	 private String url;
-	 private String directions;
-	 
-	 @Lob
-	 private Byte[] image;
-	 
-	 @Enumerated(value = EnumType.STRING)
-	 private Difficulty difficulty;
-	 
-	 @OneToOne(cascade = CascadeType.ALL)   //here recipe is parent entity and notes is dependable on recipe. so whatever change is done in parent , that change also done in child entity
-	 private Notes notes;		//recipe and notes bidirectonal relation
-	 
-	 @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")	//One can have Many ingredients. //mappedBy name come from ingredient entity Recipe propertity name;				
-	 private Set<Ingredient> ingredients; 
+	private String description;
+	private Integer prepTime;
+	private Integer cookTime;
+	private Integer servings;
+	private String source;
+	private String url;
+	private String directions;
+
+	@Lob
+	private Byte[] image;
+
+	@Enumerated(value = EnumType.STRING)
+	private Difficulty difficulty;
+
+	@OneToOne(cascade = CascadeType.ALL) // here recipe is parent entity and notes is dependable on recipe. so whatever
+											// change is done in parent , that change also done in child entity
+	private Notes notes; // recipe and notes bidirectonal relation
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe") // One can have Many ingredients. //mappedBy name come
+																// from ingredient entity Recipe propertity name;
+	private Set<Ingredient> ingredients;
+
+	@ManyToMany
+	@JoinTable(name = "recipe_category",
+				joinColumns = @JoinColumn(name ="recipe_id"), 
+				inverseJoinColumns = @JoinColumn(name = "category_id"))
+	private Set<Category> categories;
 
 	public Long getId() {
 		return id;
@@ -135,9 +147,14 @@ public class Recipe {
 	public void setDifficulty(Difficulty difficulty) {
 		this.difficulty = difficulty;
 	}
-	 
+
+	public Set<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(Set<Category> categories) {
+		this.categories = categories;
+	}
+
 	
-	 
-	 
-	 
 }
