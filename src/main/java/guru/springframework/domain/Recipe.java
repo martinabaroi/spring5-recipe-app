@@ -133,7 +133,7 @@ public class Recipe {
 
 	public void setNotes(Notes notes) {
 		this.notes = notes;
-		notes.setRecipe(this);
+		notes.setRecipe(this);  //recipe and notes are bidirection relation. so  when in a recipe object we set notes. in notes object this recipe will also be set
 	}
 	
 	public Recipe addIngredient(Ingredient ingredient) {
