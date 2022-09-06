@@ -12,6 +12,7 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Ingredient {
+	
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,8 +25,28 @@ public class Ingredient {
 
     
     @OneToOne(fetch = FetchType.EAGER)   //unidirectional relationship from ingredient to Unit of messure. //so no need of ingredienr properties in unit of messure enity
-    private UnitofMessure unitOfMessure;
+    private UnitOfMeasure unitOfMeasure;
 
+    
+    
+    public Ingredient() {
+		super();
+	}
+    
+	public Ingredient(String description, BigDecimal amount, UnitOfMeasure unitOfMeasure) {
+		this.description = description;
+		this.amount = amount;
+		this.unitOfMeasure = unitOfMeasure;
+	}
+
+	public Ingredient(String description, BigDecimal amount, UnitOfMeasure unitOfMeasure ,Recipe recipe ) {
+    	this.description = description;
+    	this.amount = amount;
+    	this.recipe = recipe;
+    	this.unitOfMeasure = unitOfMeasure;
+    }
+    
+    
 	public Long getId() {
 		return id;
 	}
@@ -65,13 +86,13 @@ public class Ingredient {
 		this.recipe = recipe;
 	}
 
-	public UnitofMessure getUnitOfMessure() {
-		return unitOfMessure;
+	public UnitOfMeasure getUnitOfMessure() {
+		return unitOfMeasure;
 	}
 
 
-	public void setUnitOfMessure(UnitofMessure unitOfMessure) {
-		this.unitOfMessure = unitOfMessure;
+	public void setUnitOfMessure(UnitOfMeasure unitOfMessure) {
+		this.unitOfMeasure = unitOfMessure;
 	}
 
     
