@@ -7,12 +7,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class UnitofMessure {
+public class UnitOfMeasure {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-	private String discription;
+	private String description;
 
 	
 	
@@ -25,12 +25,12 @@ public class UnitofMessure {
 	}
 
 	
-	public String getDiscription() {
-		return discription;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDiscription(String discription) {
-		this.discription = discription;
+	public void setDescription(String discription) {
+		this.description = discription;
 	}
 	
 	
